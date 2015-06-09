@@ -1,10 +1,13 @@
-form(action='/user/login' method='POST' enctype='application/x-www-form-urlencoded')
-  label Email
-  input(type='email' name='email' tabindex='1' required='required')
+.container(style='padding-top: 50px; width: 400px;')
+  form(action='/user/login' method='POST' enctype='application/x-www-form-urlencoded')
+    .form-group
+      label Email
+      input(type='email' name='email' tabindex='1' required='required' class='form-control')
+    
+    .form-group
+      label Password
+      input(type='password' name='password' tabindex='2' required='required' class='form-control')
 
-  label Password
-  input(type='password' name='password' tabindex='2' required='required')
-
-  input(type='submit' value='Login')
-  
-a(href='/user/register') Register
+    .form-group
+      input(type='submit' value='Login' class='btn btn-success btn-sm')
+      a(href='/user/register' class='btn btn-default btn-sm') Register

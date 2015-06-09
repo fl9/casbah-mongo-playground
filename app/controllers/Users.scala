@@ -13,11 +13,11 @@ class Users extends Controller {
     val password = BCrypt.hashpw(request.body.get("password").get.head, salt)
 
     UserRepository.insert(User(email, password, salt))
-    Ok(Scalate.render("user/successfulRegistered.jade", Map("email" -> email, "password" -> password)))
+    Ok(Scalate.render("main.jade", Map("title" -> "Register thanks", "content" -> "user/successfulRegistered.jade")))
   }
 
   def register = Action {
-    Ok(Scalate.render("user/register.jade"))
+    Ok(Scalate.render("main.jade", Map("title" -> "Register", "content" -> "user/register.jade")))
   }
 
   def login = Action(parse.urlFormEncoded) { implicit request =>
@@ -41,7 +41,7 @@ class Users extends Controller {
     }
   }
 
-  def logout = Action { 
+  def logout = Action {
     Redirect("/").withNewSession
   }
 
@@ -49,7 +49,7 @@ class Users extends Controller {
     val sessionId = request.session.get("sessionId")
 
     if(sessionId.isDefined) {
-      Ok(Scalate.render("user/afterLogin.jade"))
+      Ok(Scalate.render("main.jade", Map("title" -> "User Area", "content" -> "user/afterLogin.jade")))
     } else {
       Unauthorized("Not allowed")
     }
