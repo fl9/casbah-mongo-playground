@@ -10,8 +10,7 @@ import models._
 class Application extends Controller {
 
   def index = Action {
-    UserRepository.insert(User("test"))
-    Ok(Scalate.render("index.jade"))
+    Ok(Scalate.render("index.jade", Map("title" -> "Index")))
   }
 
 }
