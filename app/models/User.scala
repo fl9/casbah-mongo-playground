@@ -1,6 +1,6 @@
 package models
 
-case class User(name: String)
+case class User(email: String, password: String, salt: String)
 
 object User {
   def serialize(user: User) : List[(String, Any)] = {
@@ -10,7 +10,7 @@ object User {
     attributes.zip(values).toList
   }
 
-  def getValues(user: User) : Seq[Any] = {
-    User.unapply(user).productIterator.toSeq
+  def getValues(user: User) : List[Any] = {
+    user.productIterator.toList
   }
 }
