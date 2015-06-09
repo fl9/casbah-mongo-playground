@@ -13,4 +13,18 @@ object UserRepository {
 
     collection.insert(test)
   }
+
+  def findByEmail(email: String) : Option[User] = {
+    val query = MongoDBObject("email" -> email)
+    val doc = collection.findOne(query)
+
+    if(doc.isDefined) {
+      val password = doc.get("password").toString()
+      val salt = doc.get("salt").toString()
+
+      Some(User(email, password, salt))
+    } else {
+      None
+    }
+  }
 }

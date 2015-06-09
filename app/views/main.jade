@@ -1,0 +1,15 @@
+-@val title: String
+-@val content: String
+
+html(lang="en")
+  head
+    title= title
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
+  body
+    nav(class='navbar navbar-inverse')
+      ul(class='nav navbar-nav')
+        li
+          a(href='/') Home
+          // TODO show logout if user logged in
+        
+    - render(content)
